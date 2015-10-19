@@ -1,0 +1,14 @@
+<% provide(:title, "Home") %>
+<% if !logged_in? %>
+<h1> Welcome to Visocialize</h1>
+<br>
+<br>
+<h2>New user? <%= link_to "Register now!", signup_path %></h2>
+
+
+<% else %>
+<h1>You are logged in!</h1>
+<br>
+<br>
+<h2> Welcome <%= @user.email %> ! </h2>
+<% end %>
