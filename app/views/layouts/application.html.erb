@@ -12,13 +12,21 @@
     <![endif]-->
   </head>
   <body>
-<%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
+      <div class="page-content">
+          <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+          <%= yield %>
+      </div>
 
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-      <%= yield %>
-    </div>
+    <footer class="footer">
+      <ul>
+        <li>© 2015 Visocialize</li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </footer>
+  </div>
   </body>
 </html>
