@@ -1,15 +1,11 @@
 <% provide(:title, "Home") %>
-<% if !logged_in? %>
-<h1> Welcome to Visocialize</h1>
-<br>
-<br>
-<h2>New user? <%= link_to "Register now!", signup_path %></h2>
-
-
-<% else %>
-<h1>You are logged in!</h1>
-<br>
-<br>
-<h2> Welcome <%= @user.email %>! </h2>
-<h2> You are a <%= @user.memberType %> user</h2>
-<% end %>
+<center><figure class="logo"></figure></center>
+<style type="text/css">
+  .logo {
+  	margin-top: 70px;
+  	background-size: 458px 90px;
+    height: 90px;
+    width: 458px;
+    background-image: url("<%= image_path("logo.png") %>");
+ }
+</style>

@@ -1,29 +1,30 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Visocialize", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-blue.min.css">
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <a href="/"><%= image_tag("logo-on-bar.png", width: "203", height: "40", class: "logo-on-bar") %></a>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
 
         <% if logged_in? %>
-            <li><%= link_to "Home", root_path%></li>
-            <li> <%= link_to "Log out", logout_path, method: "delete" %></li>
+          <div class="bar-user-info">
+            <%= @user.email %><br>
+            <%= @user.memberType + " Member" %>
+          </div>
+            <a rel="nofollow" data-method="delete" href="/logout"><%= button_tag "logout", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", id: "register_button" %></a>
 
         <% else %>
-            <%= form_for(:session, url: login_path, :html => {class: "navbar-form navbar-right form-inline"}) do |f| %>
-                <div class="form-group", id = "label1">
-                <%= f.label :email %>
-                <%= f.email_field :email, class: 'form-control' %>
-                </div>
-                <div class="form-group", id = "label1">
-                <%= f.label :password %>
-                <%= f.password_field :password, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= f.submit "Log in", class: "btn btn-primary"%>
-              </div>
+            <%= form_for(:session, url: login_path) do |f| %>
+              <%= f.email_field :email, class: "bar-txtlabel bar-margin", placeholder: "Email ..." %>
+              <%= f.password_field :password, class: "bar-txtlabel bar-margin", placeholder: "Password ..." %>
+              <%= button_tag "Login", class: "bar-margin mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", id: "login_button" %>
             <% end %>
+            <a href="/signup"><%= button_tag "Register", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", id: "register_button" %></a>
         <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
+    
+    </div>
+  </header>
