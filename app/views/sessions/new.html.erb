@@ -10,12 +10,9 @@
  }
 </style>
 
-<% $twitter.search("programming", result_type: "recent").take(3).each do |tweet| %>
-  <script type="text/javascript">
-    var para = document.createElement("p");
-    var node = document.createTextNode("<%= escape_javascript (tweet.text) %>");
-    para.appendChild(node);
-    document.body.appendChild(para);
-  </script>
-
+<center><div class="search-bar">
+<%= form_tag("/search", method: "get") do %>
+  <%= text_field_tag(:q) %>
+  <%= button_tag "Search", value: "Search", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %>
 <% end %>
+</div></center>

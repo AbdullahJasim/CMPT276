@@ -1,0 +1,4 @@
+<h1>Search Results for <%= @query %> on Twitter</h1>
+<% @result.each do |tweet| %>
+  <p><%= tweet.text %></p>
+<% end %>
