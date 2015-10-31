@@ -4,7 +4,7 @@ class SearchController < ApplicationController
     # Keywords are not passed in
     # Used to forbid users calling GET '/search' directly and
     # handles the error when user doesn't enter anything in queries
-    if params[:q] == nil || params[:q] == ''
+    if params[:q].nil? || params[:q].blank?
       redirect_to root_url
       return
     else
