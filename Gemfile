@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'twitter'
+gem 'instagram'
+gem 'google_plus'
 
 gem 'rails',        '4.2.4'
 gem 'bootstrap-sass',       '3.2.0.0'
