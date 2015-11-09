@@ -13,5 +13,6 @@ class SearchController < ApplicationController
 
     @result = $twitter.search(@query, result_type: "recent").take(20)
     @instagram = Instagram.user_recent_media("460563723", {:count => 20})
+    @googleplus = GooglePlus::Activity.search(@query, {:maxResults => 20})
   end
 end

@@ -1,3 +1,12 @@
+<h1>Search Results for <%= @query %> on Google+</h1>
+<% @googleplus.items.each do |post| %>
+<div>
+  <p>POST URL: <%= post.url %></p>
+  <%= raw post.object.content %>
+</div>
+<br><br>
+<% end %>
+
 <h1>Search Results for <%= @query %> on Twitter</h1>
 <% @result.each do |tweet| %>
   <p><%= tweet.text %></p>
