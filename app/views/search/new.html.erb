@@ -12,6 +12,7 @@
   <p><%= tweet.text %></p>
 <% end %>
 
+<h1>Search Results for <%= @query %> on Instagram</h1>
 <% @instagram.each do |instagram| %>
- <%= image_tag instagram.images.standard_resolution.url %>
+ <%= image_tag instagram.images.thumbnail.url %>
 <% end %>
