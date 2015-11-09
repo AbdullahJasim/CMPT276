@@ -23,7 +23,7 @@ class SearchController < ApplicationController
       @instagram = Instagram.tag_recent_media(tagResult[0].name, {:count => 20})
     end
     threads << Thread.new do
-      @googleplus = GooglePlus::Activity.search(@query, {:maxResults => 20})
+      @googleplus = GooglePlus::Activity.search('#'+@query, {:maxResults => 20})
     end
     ThreadsWait.all_waits(*threads)
 

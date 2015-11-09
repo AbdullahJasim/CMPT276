@@ -14,5 +14,7 @@
 
 <h1>Search Results for <%= @query %> on Instagram</h1>
 <% @instagram.each do |instagram| %>
- <%= image_tag instagram.images.thumbnail.url %>
+ <a href = <%= instagram.link%> target="_blank">
+   <%= image_tag instagram.images.thumbnail.url %>
+ </a>
 <% end %>
