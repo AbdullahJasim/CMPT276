@@ -1,3 +1,6 @@
+require 'thread'
+require 'thwait'
+
 class SearchController < ApplicationController
   def new
     @user = current_user
@@ -11,8 +14,17 @@ class SearchController < ApplicationController
       @query = params[:q]
     end
 
-    @result = $twitter.search(@query, result_type: "recent").take(20)
-    @instagram = Instagram.user_recent_media("460563723", {:count => 20})
-    @googleplus = GooglePlus::Activity.search(@query, {:maxResults => 20})
+    threads = []
+    threads << Thread.new do
+      @result = $twitter.search(@query, result_type: "recent").take(20)
+    end
+    threads << Thread.new do
+      @instagram = Instagram.user_recent_media("460563723", {:count => 20})
+    end
+    threads << Thread.new do
+      @googleplus = GooglePlus::Activity.search(@query, {:maxResults => 20})
+    end
+    ThreadsWait.all_waits(*threads)
+
   end
 end
