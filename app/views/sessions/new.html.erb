@@ -16,7 +16,3 @@
   <%= button_tag "Search", value: "Search", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %>
 <% end %>
 </div></center>
-
-<% @instagram.each do |instagram| %>
- <%= image_tag instagram.images.standard_resolution.url %>
-<% end %>
