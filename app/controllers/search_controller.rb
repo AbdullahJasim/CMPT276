@@ -16,7 +16,7 @@ class SearchController < ApplicationController
 
     threads = []
     threads << Thread.new do
-      @result = $twitter.search(@query, result_type: "recent").take(20)
+      @twitter = $twitter.search(@query, result_type: "recent").take(20)
     end
     threads << Thread.new do
       tagResult = Instagram.tag_search(@query)
