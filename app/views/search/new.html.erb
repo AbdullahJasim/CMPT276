@@ -21,4 +21,14 @@
     <%= image_tag instagram.images.thumbnail.url %>
   </a>
  <% end %>
+
+<% if @freq_search_option  && @current_user.memberType == "Paid" %>
+ <h1>Frequent Patterns</h1>
+ <%if !@freq_words.nil? %>
+  <%@freq_words.each do |p| %>
+    <p><%=p%></p>
+    <%end%>
+  <%end%>
+<%end%>
+
 <% end %>

@@ -11,8 +11,13 @@
 </style>
 
 <center><div class="search-bar">
-<%= form_tag("/search", method: "get") do %>
+<%= form_tag("/search", method: "get") do%>
   <%= text_field_tag(:q) %>
   <%= button_tag "Search", value: "Search", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %>
+  <br>
+  <% if !(@current_user.nil?) && @current_user.memberType == "Paid" %>
+    <%= check_box_tag(:freq_words)%>
+    <span> Show words that frequently appear with your search </span>
+  <%end%>
 <% end %>
 </div></center>
