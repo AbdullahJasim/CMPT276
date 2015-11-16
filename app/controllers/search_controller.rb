@@ -18,7 +18,7 @@ class SearchController < ApplicationController
 
     threads = []
     threads << Thread.new do
-      @twitter = $twitter.search(@query, result_type: "recent").take(100)
+      @twitter = $twitter.search(@query, result_type: "top").take(100)
       @twitter.each do |tweet|
         @hash_tags.push(parse(tweet.text))
       end

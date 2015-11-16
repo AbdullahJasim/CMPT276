@@ -26,7 +26,13 @@
  <h1>Frequent Patterns</h1>
  <%if !@freq_words.nil? %>
   <%@freq_words.each do |p| %>
-    <p><%=p%></p>
+    <%= form_tag("/search", method: "get") do%>
+      <h5><%=p%>
+      <%=hidden_field_tag "q", p%>
+      <%=hidden_field_tag "freq_words", 1%>
+      <%= button_tag "Quick Search", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", id: "quick_search" %>
+    </h5>
+    <%end%>
     <%end%>
   <%end%>
 <%end%>

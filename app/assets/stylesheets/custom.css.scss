@@ -80,6 +80,8 @@ h1 {
   margin-left: 18px;
   position: absolute;
 }
+
+
 /* Footer */
 
 .footer {
@@ -107,4 +109,10 @@ h1 {
   width: 420px;
   height: 38px;
   font-size: 20px;
+}
+
+#quick_search { /* Keeps quick search buttons lined up */
+  position: absolute;
+  left:300px;
+  margin-top: -10px;
 }
