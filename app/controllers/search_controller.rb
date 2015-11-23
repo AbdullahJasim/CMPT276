@@ -1,11 +1,19 @@
 require 'thread'
 require 'thwait'
+require 'Mail'
 
 class SearchController < ApplicationController
+
+  # Public variables of this class stores search result and email address for mailing
+  @@result
+  @@user
+
   def new
     @hash_tags = []
     @freq_words = []
-    @user = current_user
+    @@user = current_user   # mail() method will retrieve user email address here
+    @user  = current_user   # @user is used in other controllers and views as usual
+
     # Keywords are not passed in
     # Used to forbid users calling GET '/search' directly and
     # handles the error when user doesn't enter anything in queries
@@ -40,12 +48,23 @@ class SearchController < ApplicationController
     end
 
     @freq_search_option = params[:freq_words]
+    @@result = render_to_string 'search/new', :layout => false
+  end
 
-
+  def mail
+    puts @@result
+    Mail.deliver do
+      to @@user.email
+      from 'noreply@visocialize-276.herokuapp.com'
+      mime_version '1.0'
+      content_type 'text/html'
+      subject 'Your Visocialize search results'
+      body @@result
+    end
+    redirect_to root_url
   end
 
   private
-
 
   def parse(text)
     var = (text.split(' ').delete_if {|x| x[0] != '#'}).map {|i| i.downcase}

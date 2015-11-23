@@ -1,3 +1,4 @@
+<%= button_to "Send results", mailresults_path %>
 <h1>Search Results for <%= @query %> on Google+</h1>
 <% if !@googleplus.items.nil? %>
   <% @googleplus.items.each do |post| %>
