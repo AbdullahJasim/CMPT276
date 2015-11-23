@@ -52,16 +52,19 @@ class SearchController < ApplicationController
   end
 
   def mail
-    puts @@result
-    Mail.deliver do
-      to @@user.email
-      from 'noreply@visocialize-276.herokuapp.com'
-      mime_version '1.0'
-      content_type 'text/html'
-      subject 'Your Visocialize search results'
-      body @@result
+    if @@user.nil?
+      render :json => { status: 404, :error => 'User not logged in. Email cannot be sent.' }
+    else
+      Mail.deliver do
+        to @@user.email
+        from 'noreply@visocialize-276.herokuapp.com'
+        mime_version '1.0'
+        content_type 'text/html'
+        subject 'Your Visocialize search results'
+        body @@result
+      end
+      render :json => { status: :ok }
     end
-    redirect_to root_url
   end
 
   private
