@@ -13,8 +13,13 @@ $("button").click(function() {
   });
 });
 </script>
-<h1>Search Results for <%= @query %> on Google+</h1>
+
+<% no_results = true %>
+
+
 <% if !@googleplus.items.nil? %>
+  <% no_results = false %>
+  <h1>Search Results for <%= @query %> on Google+</h1>
   <% @googleplus.items.each do |post| %>
   <div>
     <p>POST URL: <%= post.url %></p>
@@ -24,18 +29,34 @@ $("button").click(function() {
   <% end %>
 <% end %>
 
-<h1>Search Results for <%= @query %> on Twitter</h1>
+<% tweet_count = 0 %>
 <% @twitter.each do |tweet| %>
-  <p><%= tweet.text %></p>
+    <% tweet_count = tweet_count + 1 %>
 <% end %>
 
-<h1>Search Results for <%= @query %> on Instagram</h1>
+<% if tweet_count != 0 %>
+  <% no_results = false %>
+  <h1>Search Results for <%= @query %> on Twitter</h1>
+  <% @twitter.each do |tweet| %>
+    <p><%= tweet.text %></p>
+  <% end %>
+<% end %>
+
 <% if !@instagram.nil? %>
+ <% no_results = false %>
+ <h1>Search Results for <%= @query %> on Instagram</h1>
  <% @instagram.each do |instagram| %>
   <a href = <%= instagram.link%> target="_blank">
     <%= image_tag instagram.images.thumbnail.url %>
   </a>
  <% end %>
+<% end %>
+
+<% if no_results %>
+  <h1> Your search for:</h1>
+    <h2><%= @query %></h2>  
+  <h1>returned no results</h1>
+<% end %>
 
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
  <h1>Frequent Patterns</h1>
@@ -46,10 +67,10 @@ $("button").click(function() {
       <%=hidden_field_tag "q", p%>
       <%=hidden_field_tag "freq_words", 1%>
       <%= button_tag "Quick Search", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent", id: "quick_search" %>
-    </h5>
-    <%end%>
+      </h5>
     <%end%>
   <%end%>
 <%end%>
 
 <% end %>
+
