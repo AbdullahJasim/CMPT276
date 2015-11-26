@@ -1,0 +1,22 @@
+<% provide(:title, 'Change Account') %>
+<h1>Change account type</h1>
+
+<div>
+    <%= render 'shared/error_messages' %>
+    <center><%= form_for(@user) do |f| %>
+
+      <style type="text/css">
+        .mdl-textfield__label {
+          color: #777;
+        }
+      </style>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.label :memberType, "Member Type", class: "mdl-textfield__label" %>
+      <%= f.select :memberType, options_for_select([["Select One", ""], "Free", "Paid"]) %>
+      </div>
+
+      <div>
+      <%= button_tag "Update Account", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent register-page-button", type: "submit", name: "commit" %>
+      </div>
+    <% end %></center>
+</div>
