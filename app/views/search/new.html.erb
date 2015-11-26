@@ -1,3 +1,4 @@
+<% provide(:title, 'Search') %>
 <%= button_tag "Send results to my email" %>
 <script>
 $("button").click(function() {
@@ -54,7 +55,7 @@ $("button").click(function() {
 
 <% if no_results %>
   <h1> Your search for:</h1>
-    <h2><%= @query %></h2>  
+    <h2><%= @query %></h2>
   <h1>returned no results</h1>
 <% end %>
 
@@ -73,4 +74,3 @@ $("button").click(function() {
 <%end%>
 
 <% end %>
-
