@@ -37,10 +37,33 @@ $("button").click(function() {
 
 <% if tweet_count != 0 %>
   <% no_results = false %>
+  <% tweet_count = 0 %>
   <h1>Search Results for <%= @query %> on Twitter</h1>
   <% @twitter.each do |tweet| %>
     <p><%= tweet.text %></p>
+    <a href=<%='#' + tweet_count.to_s %> class="btn btn-info" data-toggle="collapse">Sentiment Info</a>
+      <div id=<%=tweet_count.to_s %> class="collapse">
+        <p><%= @tweet_sentiment[tweet_count]%></p>
+        <% if @tweet_sentiment[tweet_count] > 0 %>
+          <p>:)</p>
+        <% elsif @tweet_sentiment[tweet_count] < 0 %>
+          <p>:(</p>
+        <%else%>
+          <p>:|</p>
+        <%end%>
+          <% tweet_count = tweet_count + 1 %>
+      </div>
+    </a>
   <% end %>
+  <h5> The tweets had a tendency to be:
+  <% if @tweet_sentiment.inject{ |sum, el| sum + el }.to_f / @tweet_sentiment.size > 0%>
+    <%= 'Positive' %>
+  <% elsif @tweet_sentiment.inject{ |sum, el| sum + el }.to_f / @tweet_sentiment.size < 0%>
+    <%= 'Negative' %>
+  <% else %>
+    <%= 'Neutral' %>
+  <%end%>
+</h5>
 <% end %>
 
 <% if !@instagram.nil? %>

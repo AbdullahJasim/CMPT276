@@ -11,6 +11,7 @@ class SearchController < ApplicationController
   def new
     @hash_tags = []
     @freq_words = []
+    @tweet_sentiment = []
     @@user = current_user   # mail() method will retrieve user email address here
     @user  = current_user   # @user is used in other controllers and views as usual
 
@@ -31,6 +32,11 @@ class SearchController < ApplicationController
         @hash_tags.push(parse(tweet.text))
       end
       @twitter = @twitter[0..19]
+
+      analyzer = SentimentLib::Analyzer.new
+      @twitter.each do |tweet|
+        @tweet_sentiment.push(analyzer.analyze(tweet.text.downcase))
+      end
 
     end
     threads << Thread.new do

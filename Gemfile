@@ -8,6 +8,7 @@ gem 'google_plus'
 
 gem 'fpgrowth'
 gem 'ruby-graphviz'
+gem 'sentiment_lib'
 
 # Mailing results
 gem 'mail'
