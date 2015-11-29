@@ -322,6 +322,24 @@ $("button").click(function() {
 <% end %>
 
 <script type="text/javascript">
+//Update the tweet relative attributes
+  updateTweetTimes("ascending");
+  updateTweetLengths("ascending");
+  updateTweetPopularity("ascending");
+  if (document.getElementById("twitterCheck").checked) {drawTweets(); }
+
+//Update the google relative attributes
+  updateGoogleTimes("ascending");
+  updateGoogleLengths("ascending");
+  updateGooglePopularity("ascending");
+  if (document.getElementById("googleCheck").checked) {drawGoogles(); }
+
+//Update the instagram relative attributes
+  updateInstagramTimes("ascending");
+  updateInstagramLengths("ascending");
+  updateInstagramPopularity("ascending");
+  if (document.getElementById("instagramCheck").checked) {drawInstagrams(); }
+
   var canvas = document.getElementById("infoVis");
   var ctx = canvas.getContext("2d");
   var rect = canvas.getBoundingClientRect();
