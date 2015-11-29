@@ -70,6 +70,26 @@
     return sum;
   }
 
+//Function to change a google+ time stamp to an int value
+//Format: 2015-11-28T18:33:10.896Z
+  function getGoogleTimeValue(time) {
+    var temp;
+    var sum = 0;
+    var temp = parseInt(time.substring(0, 4));
+    sum += (temp - 2000) * 15;
+    var temp = parseInt(time.substring(5, 7));
+    sum += (temp) * 10;
+    var temp = parseInt(time.substring(8, 10));
+    sum += (temp) * 7;
+    var temp = parseInt(time.substring(11, 13));
+    sum += (temp) * 4;
+    var temp = parseInt(time.substring(14, 16));
+    sum += (temp) * 2;
+    var temp = parseInt(time.substring(17, 19));
+    sum += temp;
+    return sum;
+  }
+
 </script>
 
 <% provide(:title, 'Search') %>
