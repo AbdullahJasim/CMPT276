@@ -136,12 +136,53 @@ $("button").click(function() {
 <% if !@googleplus.items.nil? %>
   <% no_results = false %>
   <h1>Search Results for <%= @query %> on Google+</h1>
-  <% @googleplus.items.each do |post| %>
+  <% @googleplus.items.each do |google| %>
+    <script type="text/javascript">
+      var canvas = document.getElementById("infoVis");
+      var ctx = canvas.getContext("2d");
+
+  //Creating a google
+      var google = new Object();
+      var time = ("<%= (google.published) %>");
+      var text = ("<%= escape_javascript (google.object.content) %>");
+      google.time = getGoogleTimeValue(time);
+      google.popularity = ("<%= (google.object.plusoners.total_items) %>") + ("<%= (google.object.resharers.total_items) %>");
+      google.textValue = text;
+      google.textLength = (text.length) / 50;
+      google.radius = google.textLength;
+      google.hit = false;
+      google.x = google.textLength;
+      google.y = google.textLength;
+
+  //Update the global min / max values
+      if (google.textLength < shortestGoogle) {
+        shortestGoogle = google.textLength;
+      } else if (google.textLength > longestGoogle) {
+        longestGoogle = google.textLength;
+      }
+
+      if (google.time < oldestGoogle) {
+        oldestGoogle = google.time;
+      } else if (google.time > mostRecentGoogle) {
+        mostRecentGoogle = google.time;
+      }
+
+      if (google.popularity < leastPopularGoogle) {
+        leastPopularGoogle = google.popularity;
+      } else if (google.popularity > mostPopularGoogle) {
+        mostPopularGoogle = google.popularity;
+      }
+
+      googles.push(google);
+    </script>
+
+=begin
   <div>
     <p>POST URL: <%= post.url %></p>
     <%= raw post.object.content %>
   </div>
   <br><br>
+=end
   <% end %>
 <% end %>
 
@@ -194,7 +235,7 @@ $("button").click(function() {
         tweets.push(tweet);
       }
     </script>
-    
+
 =begin
     <p><%= tweet.text %></p>
     <a href=<%='#' + tweet_count.to_s %> class="btn btn-info" data-toggle="collapse">Sentiment Info</a>
