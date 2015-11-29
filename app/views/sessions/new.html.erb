@@ -16,8 +16,10 @@
   <%= button_tag "Search", value: "Search", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %>
   <br>
   <% if !(@current_user.nil?) && @current_user.memberType == "Paid" %>
-    <%= check_box_tag(:freq_words)%>
-    <span> Show words that frequently appear with your search </span>
+    <label id="frequent_words" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="freq_words">
+      <%= check_box_tag 'freq_words', "1", false, class: 'mdl-checkbox__input'  %>
+      <span class="mdl-checkbox__label"> Show words that frequently appear with your search </span>
+    </label>
   <%end%>
 <% end %>
 </div></center>
