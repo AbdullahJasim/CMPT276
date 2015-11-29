@@ -267,7 +267,7 @@ $("button").click(function() {
 <% if !@instagram.nil? %>
  <% no_results = false %>
  <h1>Search Results for <%= @query %> on Instagram</h1>
- <% @instagram.each do |instagram| %>
+ <% @instagram.each do |inst| %>
    <script type="text/javascript">
      //<%= image_tag inst.images.standard_resolution.url %>
      var canvas = document.getElementById("infoVis");
@@ -478,6 +478,89 @@ $("button").click(function() {
     } else if (type == "size") {
       for (var i = 0; i < googles.length; i++) {
         googles[i].y = googles[i].textLength;
+      }
+    }
+  }
+
+//INSTAGRAM
+  function drawInstagrams() {
+    for (var i = 0; i < instagrams.length; i++) {
+      drawPoint(instagrams[i], '#ffeb99', '#b38f00');
+    }
+  }
+
+  function updateInstagramTimes(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].time = (instagrams[i].time - oldestInstagram) * 3.5;
+        instagrams[i].time += 30;
+      }
+    } else {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].time = (mostRecentInstagram - instagrams[i].time) * 3.5;
+        instagrams[i].time += 30;
+      }
+    }
+  }
+
+  function updateInstagramLengths(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].imageSize = (instagrams[i].imageSize - smallestInstagram) * 30;
+        instagrams[i].imageSize += 60;
+        instagrams[i].radius = instagrams[i].imageSize / 250000;
+      }
+    } else {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].imageSize = (largestInstagram - instagrams[i].imageSize) * 30;
+        instagrams[i].imageSize += 60;
+        instagrams[i].radius = instagrams[i].imageSize / 250000;
+      }
+    }
+  }
+
+  function updateInstagramPopularity(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].popularity = (instagrams[i].popularity - leastPopularInstagram);
+        instagrams[i].popularity = instagrams[i].popularity / 10000;
+      }
+    } else {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].popularity = (mostPopularInstagram - instagrams[i].popularity);
+        instagrams[i].popularity = instagrams[i].popularity / 10000;
+      }
+    }
+  }
+
+  function updateInstagramsX(type) {
+    if (type == "date") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].x = instagrams[i].time;
+      }
+    } else if (type == "popularity") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].x = instagrams[i].popularity;
+      }
+    } else if (type == "size") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].x = instagrams[i].textLength;
+      }
+    }
+  }
+
+  function updateInstagramsY(type) {
+    if (type == "date") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].y = instagrams[i].time;
+      }
+    } else if (type == "popularity") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].y = instagrams[i].popularity;
+      }
+    } else if (type == "size") {
+      for (var i = 0; i < instagrams.length; i++) {
+        instagrams[i].y = instagrams[i].textLength;
       }
     }
   }
