@@ -40,6 +40,16 @@
   leastPopularInstagram = 9999999999;
   mostPopularInstagram = 0;
 
+//Function to avoid duplicate tweet entries
+  function checkIfTweetExists(element) {
+    for (var i = 0; i < tweets.length; i++) {
+      if (tweets[i].textvalue == element.textvalue) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 </script>
 
 <% provide(:title, 'Search') %>
