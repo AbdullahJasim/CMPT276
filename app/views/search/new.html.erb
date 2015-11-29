@@ -366,6 +366,38 @@ $("button").click(function() {
       }
     }
   }
+
+  function updateTweetsX(type) {
+    if (type == "date") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].x = tweets[i].time;
+      }
+    } else if (type == "popularity") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].x = tweets[i].popularity;
+      }
+    } else if (type == "size") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].x = tweets[i].textlength;
+      }
+    }
+  }
+
+  function updateTweetsY(type) {
+    if (type == "date") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].y = tweets[i].time;
+      }
+    } else if (type == "popularity") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].y = tweets[i].popularity;
+      }
+    } else if (type == "size") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].y = tweets[i].textlength;
+      }
+    }
+  }
 </script>
 
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
