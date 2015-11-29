@@ -321,6 +321,53 @@ $("button").click(function() {
   <h1>returned no results</h1>
 <% end %>
 
+<script type="text/javascript">
+//Functions to change each Twitter value to be more relative
+  function updateTweetTimes(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].time = (tweets[i].time - oldestTweet) * 10;
+        tweets[i].time += 30;
+      }
+    } else {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].time = (mostRecentTweet - tweets[i].time) * 10;
+        tweets[i].time += 30;
+      }
+    }
+  }
+
+  function updateTweetLengths(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].textlength = (tweets[i].textlength - shortestTweet) * 30;
+        tweets[i].textlength += 60;
+        tweets[i].radius = tweets[i].textlength / 15;
+      }
+    } else {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].textlength = (longestTweet - tweets[i].textlength) * 30;
+        tweets[i].textlength += 60;
+        tweets[i].radius = tweets[i].textlength / 15;
+      }
+    }
+  }
+
+  function updateTweetPopularity(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].popularity = (tweets[i].popularity - leastPopularTweet) * 30;
+        tweets[i].popularity += 60;
+      }
+    } else {
+      for (var i = 0; i < tweets.length; i++) {
+        tweets[i].popularity = (mostPopularTweet - tweets[i].popularity) * 30;
+        tweets[i].popularity += 60;
+      }
+    }
+  }
+</script>
+
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
  <h1>Frequent Patterns</h1>
  <%if !@freq_words.nil? %>
