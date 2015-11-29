@@ -322,7 +322,7 @@ $("button").click(function() {
 <% end %>
 
 <script type="text/javascript">
-//Functions to change each Twitter value to be more relative
+//TWITTER
   function updateTweetTimes(sorting) {
     if (sorting == "ascending") {
       for (var i = 0; i < tweets.length; i++) {
@@ -398,6 +398,90 @@ $("button").click(function() {
       }
     }
   }
+
+//GOOGLEPLUS
+  function drawGoogles() {
+    for (var i = 0; i < googles.length; i++) {
+      drawPoint(googles[i], '#ff4d4d', '#990000');
+    }
+  }
+
+  function updateGoogleTimes(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].time = (googles[i].time - oldestGoogle) * 3.5;
+        googles[i].time += 30;
+      }
+    } else {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].time = (mostRecentGoogle - googles[i].time) * 3.5;
+        googles[i].time += 30;
+      }
+    }
+  }
+
+  function updateGoogleLengths(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].textLength = (googles[i].textLength - shortestGoogle) * 30;
+        googles[i].textLength += 60;
+        googles[i].radius = googles[i].textLength / 150;
+      }
+    } else {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].textLength = (longestGoogle - googles[i].textLength) * 30;
+        googles[i].textLength += 60;
+        googles[i].radius = googles[i].textLength / 150;
+      }
+    }
+  }
+
+  function updateGooglePopularity(sorting) {
+    if (sorting == "ascending") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].popularity = (googles[i].popularity - leastPopularGoogle);
+        googles[i].popularity += 120;
+      }
+    } else {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].popularity = (mostPopularGoogle - googles[i].popularity);
+        googles[i].popularity += 120;
+      }
+    }
+  }
+
+  function updateGooglesX(type) {
+    if (type == "date") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].x = googles[i].time;
+      }
+    } else if (type == "popularity") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].x = googles[i].popularity;
+      }
+    } else if (type == "size") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].x = googles[i].textLength;
+      }
+    }
+  }
+
+  function updateGooglesY(type) {
+    if (type == "date") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].y = googles[i].time;
+      }
+    } else if (type == "popularity") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].y = googles[i].popularity;
+      }
+    } else if (type == "size") {
+      for (var i = 0; i < googles.length; i++) {
+        googles[i].y = googles[i].textLength;
+      }
+    }
+  }
+
 </script>
 
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
