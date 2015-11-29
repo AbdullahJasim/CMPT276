@@ -326,9 +326,9 @@ $("button").click(function() {
   var ctx = canvas.getContext("2d");
   var rect = canvas.getBoundingClientRect();
 
-  //Hovering funcionality for all nodes
+//Hovering funcionality for all nodes
   canvas.addEventListener("mousemove", function(event) {
-  //Tweets functionality
+//Tweets functionality
     if (document.getElementById("twitterCheck").checked) {
       for (var i = 0; i < tweets.length; i++) {
         var mouseX = event.clientX - rect.left;
@@ -341,10 +341,39 @@ $("button").click(function() {
       }
     }
 
-  //Instagram functionality
+//Instagram functionality
 
 
-  //Google+ functionality
+//Google+ functionality
+  });
+
+//Clicking functionality to show that the node is active and to display information
+  canvas.addEventListener("click", function(event) {
+//Tweets functionality
+    if (document.getElementById("twitterCheck").checked) {
+      var oneHit = false;
+      for (var i = 0; i < tweets.length; i++) {
+        var mouseX = event.clientX - rect.left;
+        var mouseY = event.clientY - rect.top;
+        if (mouseX > tweets[i].x - (tweets[i].radius) && mouseX < tweets[i].x + (tweets[i].radius) && mouseY > tweets[i].y - (tweets[i].radius) && mouseY < tweets[i].y + (tweets[i].radius)) {
+          tweets[i].hit = true;
+          oneHit = true;
+          document.getElementById("chosenResult").innerHTML = tweets[i].textvalue;
+          drawPoint(tweets[i], '#5cd65c', '#006080');
+        } else {
+          tweets[i].hit = false;
+        }
+      }
+
+      if (oneHit == false) {
+        document.getElementById("chosenResult").innerHTML = "";
+      }
+    }
+
+//Instagram functionality
+
+
+//Google+ functionality
   });
 
 //TWITTER
