@@ -654,6 +654,35 @@ $("button").click(function() {
     ctx.stroke();
   }
 
+//Control functions
+    document.getElementById("twitterCheck").addEventListener('change', redraw);
+    document.getElementById("instagramCheck").addEventListener('change', redraw);
+    document.getElementById("googleCheck").addEventListener('change', redraw);
+
+//Redraw function, called each time an update in controls happens
+    function redraw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (document.getElementById("twitterCheck").checked) {
+        if (document.getElementById("dateCheck").checked) {updateTweetsY("date"); }
+        if (document.getElementById("popularityCheck").checked) {updateTweetsX("popularity"); }
+        //if (document.getElementById("sizeCheck").checked) {updateTweetsX("size"); }
+        drawTweets();
+      }
+
+      if (document.getElementById("googleCheck").checked) {
+        if (document.getElementById("dateCheck").checked) {updateGooglesY("date"); }
+        if (document.getElementById("popularityCheck").checked) {updateGooglesX("popularity"); }
+        drawGoogles();
+      }
+
+      if (document.getElementById("instagramCheck").checked) {
+        if (document.getElementById("dateCheck").checked) {updateInstagramsY("date"); }
+        if (document.getElementById("popularityCheck").checked) {updateInstagramsX("popularity"); }
+        drawInstagrams();
+      }
+
+
+    }
 </script>
 
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
