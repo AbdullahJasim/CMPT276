@@ -37,7 +37,7 @@ group :test do
   gem 'guard-minitest',     '2.3.1'
 end
 
-group :production do
+  gem 'rails_12factor', group: :production
+
   gem 'pg',             '0.17.1'
-  gem 'rails_12factor', '0.0.2'
-end
+  gem 'puma'
