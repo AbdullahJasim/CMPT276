@@ -345,30 +345,44 @@ $("button").click(function() {
 
 //Hovering funcionality for all nodes
   canvas.addEventListener("mousemove", function(event) {
+//Calculate the X and Y positions of the mouse
+    var mouseX = event.clientX - rect.left;
+    var mouseY = event.clientY - rect.top;
+
 //Tweets functionality
     if (document.getElementById("twitterCheck").checked) {
       for (var i = 0; i < tweets.length; i++) {
-        var mouseX = event.clientX - rect.left;
-        var mouseY = event.clientY - rect.top;
         if (mouseX > tweets[i].x - (tweets[i].radius) && mouseX < tweets[i].x + (tweets[i].radius) && mouseY > tweets[i].y - (tweets[i].radius) && mouseY < tweets[i].y + (tweets[i].radius) && tweets[i].hit == false) {
           drawPoint(tweets[i], '#ff944d', '#006080');
-        } else if (tweets[i].hit == false) {
-          drawPoint(tweets[i], '#00c0ff', '#006080');
-        }
+        } else if (tweets[i].hit == false) { drawPoint(tweets[i], '#00c0ff', '#006080');}
       }
     }
 
 //Instagram functionality
-
+    if (document.getElementById("instagramCheck").checked) {
+      for (var i = 0; i < instagrams.length; i++) {
+        if (mouseX > instagrams[i].x - (instagrams[i].radius) && mouseX < instagrams[i].x + (instagrams[i].radius) && mouseY > instagrams[i].y - (tweets[i].radius) && mouseY < instagrams[i].y + (tweets[i].radius) && instagrams[i].hit == false) {
+          drawPoint(instagrams[i], '#ff944d', '#006080');
+        } else if (instagrams[i].hit == false) { drawPoint(instagrams[i], '#00c0ff', '#006080');}
+      }
+    }
 
 //Google+ functionality
+    if (document.getElementById("googleCheck").checked) {
+      for (var i = 0; i < googles.length; i++) {
+        if (mouseX > googles[i].x - (googles[i].radius) && mouseX < googles[i].x + (googles[i].radius) && mouseY > googles[i].y - (googles[i].radius) && mouseY < googles[i].y + (googles[i].radius) && googles[i].hit == false) {
+          drawPoint(googles[i], '#ff944d', '#006080');
+        } else if (googles[i].hit == false) { drawPoint(googles[i], '#00c0ff', '#006080');}
+      }
+    }
   });
 
 //Clicking functionality to show that the node is active and to display information
   canvas.addEventListener("click", function(event) {
+    var oneHit = false;
+
 //Tweets functionality
     if (document.getElementById("twitterCheck").checked) {
-      var oneHit = false;
       for (var i = 0; i < tweets.length; i++) {
         var mouseX = event.clientX - rect.left;
         var mouseY = event.clientY - rect.top;
@@ -377,29 +391,45 @@ $("button").click(function() {
           oneHit = true;
           document.getElementById("chosenResult").innerHTML = tweets[i].textvalue;
           drawPoint(tweets[i], '#5cd65c', '#006080');
-        } else {
-          tweets[i].hit = false;
-        }
-      }
-
-      if (oneHit == false) {
-        document.getElementById("chosenResult").innerHTML = "";
+        } else { tweets[i].hit = false;}
       }
     }
 
 //Instagram functionality
-
+    if (document.getElementById("instagramCheck").checked) {
+      for (var i = 0; i < instagrams.length; i++) {
+        var mouseX = event.clientX - rect.left;
+        var mouseY = event.clientY - rect.top;
+        if (mouseX > instagrams[i].x - (instagrams[i].radius) && mouseX < instagrams[i].x + (instagrams[i].radius) && mouseY > instagrams[i].y - (instagrams[i].radius) && mouseY < instagrams[i].y + (instagrams[i].radius)) {
+          instagrams[i].hit = true;
+          oneHit = true;
+          //Figure out a way to add the image to the result div here
+          //document.getElementById("chosenResult").innerHTML = instagrams[i].textvalue;
+          drawPoint(instagrams[i], '#5cd65c', '#006080');
+        } else { instagrams[i].hit = false;}
+      }
+    }
 
 //Google+ functionality
+    if (document.getElementById("googleCheck").checked) {
+      for (var i = 0; i < googles.length; i++) {
+        var mouseX = event.clientX - rect.left;
+        var mouseY = event.clientY - rect.top;
+        if (mouseX > googles[i].x - (googles[i].radius) && mouseX < googles[i].x + (googles[i].radius) && mouseY > googles[i].y - (googles[i].radius) && mouseY < googles[i].y + (googles[i].radius)) {
+          googles[i].hit = true;
+          oneHit = true;
+          document.getElementById("chosenResult").innerHTML = googles[i].textValue;
+          drawPoint(googles[i], '#5cd65c', '#006080');
+        } else { googles[i].hit = false;}
+      }
+    }
+
+    if (oneHit == false) { document.getElementById("chosenResult").innerHTML = "";}
   });
 
 
 //TWITTER
-  function drawTweets() {
-    for (var i = 0; i < tweets.length; i++) {
-      drawPoint(tweets[i], '#00c0ff', '#006080');
-    }
-  }
+  function drawTweets() { for (var i = 0; i < tweets.length; i++) { drawPoint(tweets[i], '#00c0ff', '#006080');}}
 
   function updateTweetTimes(sorting) {
     if (sorting == "ascending") {
@@ -447,41 +477,27 @@ $("button").click(function() {
 
   function updateTweetsX(type) {
     if (type == "date") {
-      for (var i = 0; i < tweets.length; i++) {
-        tweets[i].x = tweets[i].time;
-      }
+      for (var i = 0; i < tweets.length; i++) { tweets[i].x = tweets[i].time;}
     } else if (type == "popularity") {
-      for (var i = 0; i < tweets.length; i++) {
-        tweets[i].x = tweets[i].popularity;
-      }
+      for (var i = 0; i < tweets.length; i++) { tweets[i].x = tweets[i].popularity;}
     } else if (type == "size") {
-      for (var i = 0; i < tweets.length; i++) {
-        tweets[i].x = tweets[i].textlength;
-      }
+      for (var i = 0; i < tweets.length; i++) { tweets[i].x = tweets[i].textlength;}
     }
   }
 
   function updateTweetsY(type) {
     if (type == "date") {
-      for (var i = 0; i < tweets.length; i++) {
-        tweets[i].y = tweets[i].time;
-      }
+      for (var i = 0; i < tweets.length; i++) { tweets[i].y = tweets[i].time;}
     } else if (type == "popularity") {
-      for (var i = 0; i < tweets.length; i++) {
-        tweets[i].y = tweets[i].popularity;
-      }
+      for (var i = 0; i < tweets.length; i++) { tweets[i].y = tweets[i].popularity;}
     } else if (type == "size") {
-      for (var i = 0; i < tweets.length; i++) {
-        tweets[i].y = tweets[i].textlength;
-      }
+      for (var i = 0; i < tweets.length; i++) { tweets[i].y = tweets[i].textlength;}
     }
   }
 
 //GOOGLEPLUS
   function drawGoogles() {
-    for (var i = 0; i < googles.length; i++) {
-      drawPoint(googles[i], '#ff4d4d', '#990000');
-    }
+    for (var i = 0; i < googles.length; i++) { drawPoint(googles[i], '#ff4d4d', '#990000');}
   }
 
   function updateGoogleTimes(sorting) {
@@ -530,41 +546,27 @@ $("button").click(function() {
 
   function updateGooglesX(type) {
     if (type == "date") {
-      for (var i = 0; i < googles.length; i++) {
-        googles[i].x = googles[i].time;
-      }
+      for (var i = 0; i < googles.length; i++) { googles[i].x = googles[i].time;}
     } else if (type == "popularity") {
-      for (var i = 0; i < googles.length; i++) {
-        googles[i].x = googles[i].popularity;
-      }
+      for (var i = 0; i < googles.length; i++) { googles[i].x = googles[i].popularity;}
     } else if (type == "size") {
-      for (var i = 0; i < googles.length; i++) {
-        googles[i].x = googles[i].textLength;
-      }
+      for (var i = 0; i < googles.length; i++) { googles[i].x = googles[i].textLength;}
     }
   }
 
   function updateGooglesY(type) {
     if (type == "date") {
-      for (var i = 0; i < googles.length; i++) {
-        googles[i].y = googles[i].time;
-      }
+      for (var i = 0; i < googles.length; i++) { googles[i].y = googles[i].time;}
     } else if (type == "popularity") {
-      for (var i = 0; i < googles.length; i++) {
-        googles[i].y = googles[i].popularity;
-      }
+      for (var i = 0; i < googles.length; i++) { googles[i].y = googles[i].popularity;}
     } else if (type == "size") {
-      for (var i = 0; i < googles.length; i++) {
-        googles[i].y = googles[i].textLength;
-      }
+      for (var i = 0; i < googles.length; i++) { googles[i].y = googles[i].textLength;}
     }
   }
 
 //INSTAGRAM
   function drawInstagrams() {
-    for (var i = 0; i < instagrams.length; i++) {
-      drawPoint(instagrams[i], '#ffeb99', '#b38f00');
-    }
+    for (var i = 0; i < instagrams.length; i++) { drawPoint(instagrams[i], '#ffeb99', '#b38f00');}
   }
 
   function updateInstagramTimes(sorting) {
@@ -613,33 +615,21 @@ $("button").click(function() {
 
   function updateInstagramsX(type) {
     if (type == "date") {
-      for (var i = 0; i < instagrams.length; i++) {
-        instagrams[i].x = instagrams[i].time;
-      }
+      for (var i = 0; i < instagrams.length; i++) { instagrams[i].x = instagrams[i].time;}
     } else if (type == "popularity") {
-      for (var i = 0; i < instagrams.length; i++) {
-        instagrams[i].x = instagrams[i].popularity;
-      }
+      for (var i = 0; i < instagrams.length; i++) { instagrams[i].x = instagrams[i].popularity;}
     } else if (type == "size") {
-      for (var i = 0; i < instagrams.length; i++) {
-        instagrams[i].x = instagrams[i].textLength;
-      }
+      for (var i = 0; i < instagrams.length; i++) { instagrams[i].x = instagrams[i].textLength;}
     }
   }
 
   function updateInstagramsY(type) {
     if (type == "date") {
-      for (var i = 0; i < instagrams.length; i++) {
-        instagrams[i].y = instagrams[i].time;
-      }
+      for (var i = 0; i < instagrams.length; i++) { instagrams[i].y = instagrams[i].time;}
     } else if (type == "popularity") {
-      for (var i = 0; i < instagrams.length; i++) {
-        instagrams[i].y = instagrams[i].popularity;
-      }
+      for (var i = 0; i < instagrams.length; i++) { instagrams[i].y = instagrams[i].popularity;}
     } else if (type == "size") {
-      for (var i = 0; i < instagrams.length; i++) {
-        instagrams[i].y = instagrams[i].textLength;
-      }
+      for (var i = 0; i < instagrams.length; i++) { instagrams[i].y = instagrams[i].textLength;}
     }
   }
 
@@ -680,9 +670,8 @@ $("button").click(function() {
       if (document.getElementById("popularityCheck").checked) {updateInstagramsX("popularity"); }
       drawInstagrams();
     }
-
-
   }
+</script>
 
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
  <h1>Frequent Patterns</h1>
