@@ -42,11 +42,7 @@
 
 //Function to avoid duplicate tweet entries
   function checkIfTweetExists(element) {
-    for (var i = 0; i < tweets.length; i++) {
-      if (tweets[i].textvalue == element.textvalue) {
-        return true;
-      }
-    }
+    for (var i = 0; i < tweets.length; i++) { if (tweets[i].textvalue == element.textvalue) { return true;}}
     return false;
   }
 
@@ -155,23 +151,14 @@ $("button").click(function() {
       google.y = google.textLength;
 
 //Update the global min / max values
-      if (google.textLength < shortestGoogle) {
-        shortestGoogle = google.textLength;
-      } else if (google.textLength > longestGoogle) {
-        longestGoogle = google.textLength;
-      }
+      if (google.textLength < shortestGoogle) { shortestGoogle = google.textLength;
+      } else if (google.textLength > longestGoogle) { longestGoogle = google.textLength;}
 
-      if (google.time < oldestGoogle) {
-        oldestGoogle = google.time;
-      } else if (google.time > mostRecentGoogle) {
-        mostRecentGoogle = google.time;
-      }
+      if (google.time < oldestGoogle) { oldestGoogle = google.time;
+      } else if (google.time > mostRecentGoogle) { mostRecentGoogle = google.time;}
 
-      if (google.popularity < leastPopularGoogle) {
-        leastPopularGoogle = google.popularity;
-      } else if (google.popularity > mostPopularGoogle) {
-        mostPopularGoogle = google.popularity;
-      }
+      if (google.popularity < leastPopularGoogle) { leastPopularGoogle = google.popularity;
+      } else if (google.popularity > mostPopularGoogle) { mostPopularGoogle = google.popularity;}
 
       googles.push(google);
     </script>
@@ -215,23 +202,14 @@ $("button").click(function() {
 
 //If we're adding the tweet to the array, update the points of the spectrum for length, date and popularity
       if (checkIfTweetExists(tweet) == false) {
-        if (tweet.textlength < shortestTweet) {
-          shortestTweet = tweet.textlength;
-        } else if(tweet.textlength > longestTweet) {
-          longestTweet = tweet.textlength;
-        }
+        if (tweet.textlength < shortestTweet) { shortestTweet = tweet.textlength;
+        } else if(tweet.textlength > longestTweet) { longestTweet = tweet.textlength;}
 
-        if (tweet.time < oldestTweet) {
-          oldestTweet = tweet.time;
-        } else if (tweet.time > mostRecentTweet) {
-          mostRecentTweet = tweet.time;
-        }
+        if (tweet.time < oldestTweet) { oldestTweet = tweet.time;
+        } else if (tweet.time > mostRecentTweet) { mostRecentTweet = tweet.time;}
 
-        if (tweet.popularity < leastPopularTweet) {
-          leastPopularTweet = tweet.popularity;
-        } else if (tweet.popularity > mostPopularTweet) {
-          mostPopularTweet = tweet.popularity;
-        }
+        if (tweet.popularity < leastPopularTweet) { leastPopularTweet = tweet.popularity;
+        } else if (tweet.popularity > mostPopularTweet) { mostPopularTweet = tweet.popularity;}
         tweets.push(tweet);
       }
     </script>
@@ -285,23 +263,14 @@ $("button").click(function() {
      instagram.y = 0;
 
 //Update the global min / max values
-     if (instagram.imageSize < smallestInstagram) {
-       smallestInstagram = instagram.imageSize;
-     } else if (instagram.imageSize > largestInstagram) {
-       largestInstagram = instagram.imageSize;
-     }
+     if (instagram.imageSize < smallestInstagram) { smallestInstagram = instagram.imageSize;
+     } else if (instagram.imageSize > largestInstagram) { largestInstagram = instagram.imageSize;}
 
-     if (instagram.time < oldestInstagram) {
-       oldestInstagram = instagram.time;
-     } else if (instagram.time > mostRecentInstagram) {
-       mostRecentInstagram = instagram.time;
-     }
+     if (instagram.time < oldestInstagram) { oldestInstagram = instagram.time;
+     } else if (instagram.time > mostRecentInstagram) { mostRecentInstagram = instagram.time;}
 
-     if (instagram.popularity < leastPopularInstagram) {
-       leastPopularInstagram = instagram.popularity;
-     } else if (instagram.popularity > mostPopularInstagram) {
-       mostPopularInstagram = instagram.popularity;
-     }
+     if (instagram.popularity < leastPopularInstagram) { leastPopularInstagram = instagram.popularity;
+     } else if (instagram.popularity > mostPopularInstagram) { mostPopularInstagram = instagram.popularity;}
 
      instagrams.push(instagram);
    </script>
