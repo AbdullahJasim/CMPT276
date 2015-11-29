@@ -1,14 +1,37 @@
-<input type="checkbox" id="twitterCheck">Twitter<br>
-<input type="checkbox" id="instagramCheck">Instagram<br>
-<input type="checkbox" id="googleCheck">Google+<br>
-<br><br>
-<input type="checkbox" id="dateCheck">Date<br>
-<input type="checkbox" id="popularityCheck">Popularity<br>
-<input type="checkbox" id="sizeCheck">Size<br>
-<br><br>
 <canvas id="infoVis" width="800" height="800"></canvas>
 <br><br>
-<p id="chosenResult"></p>
+<div class="control">
+  <input type="checkbox" id="twitterCheck">Twitter<br>
+  <input type="checkbox" id="instagramCheck">Instagram<br>
+  <input type="checkbox" id="googleCheck">Google+<br>
+  <br><br>
+  <input type="checkbox" id="dateCheck">Date<br>
+  <input type="checkbox" id="popularityCheck">Popularity<br>
+  <input type="checkbox" id="sizeCheck">Size<br>
+  <br><br>
+</div>
+<div class="mdl-card mdl-shadow--2dp">
+	<div class="mdl-card__title mdl-card--expand">
+		<p id="chosenResult"></p>
+	</div>
+</div>
+<style>
+.mdl-card {
+	background-color: indigo;
+  width: 400px;
+  margin-left: 500px;
+  position: relative;
+}
+.mdl-card__title {
+  color: white;
+}
+canvas {
+  position: absolute;
+}
+.control {
+  position: relative;
+}
+</style>
 
 <script type="text/javascript">
 //Global arrays
@@ -164,13 +187,6 @@ $("button").click(function() {
       googles.push(google);
     </script>
 
-<!--
-  <div>
-    <p>POST URL: <%= post.url %></p>
-    <%= raw post.object.content %>
-  </div>
-  <br><br>
--->
   <% end %>
 <% end %>
 
@@ -278,11 +294,7 @@ $("button").click(function() {
      instagrams.push(instagram);
    </script>
 
-<!--
-  <a href = <%= instagram.link%> target="_blank">
-    <%= image_tag instagram.images.thumbnail.url %>
-  </a>
--->
+
  <% end %>
 <% end %>
 
