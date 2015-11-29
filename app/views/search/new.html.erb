@@ -90,6 +90,27 @@
     return sum;
   }
 
+//Function to change the instagram time stamp to an int value
+//Format: 1279340983
+  function getInstagramTimeValue(time) {
+    var date = new Date (parseInt(time) * 1000);
+    var temp = date.getYear();
+    var sum = 0;
+    temp += 1900;
+    sum += (temp - 2000) * 15;
+    temp = date.getMonth();
+    sum += (temp) * 10;
+    temp = date.getDay();
+    sum += (temp) * 7;
+    temp = date.getHours();
+    sum += (temp) * 4;
+    temp = date.getMinutes();
+    sum += (temp) * 2;
+    temp = date.getSeconds();
+    sum += temp;
+
+    return sum;
+  }
 </script>
 
 <% provide(:title, 'Search') %>
