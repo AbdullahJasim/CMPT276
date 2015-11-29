@@ -147,6 +147,7 @@ $("button").click(function() {
       google.textLength = (text.length) / 50;
       google.radius = google.textLength;
       google.hit = false;
+      google.hovered = false;
       google.x = google.textLength;
       google.y = google.textLength;
 
@@ -197,6 +198,7 @@ $("button").click(function() {
       tweet.textlength = (text.length) / 10;
       tweet.radius = tweet.textlength;
       tweet.hit = false;
+      tweet.hovered = false;
       tweet.x = tweet.textlength;
       tweet.y = tweet.textlength;
 
@@ -259,6 +261,7 @@ $("button").click(function() {
      instagram.imageURL = ("<%= inst.images.standard_resolution.url %>");
      instagram.radius = instagram.imageSize / 100;
      instagram.hit = false;
+     instagram.hovered = false;
      instagram.x = 0;
      instagram.y = 0;
 
