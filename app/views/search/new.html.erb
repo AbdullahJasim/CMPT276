@@ -322,6 +322,31 @@ $("button").click(function() {
 <% end %>
 
 <script type="text/javascript">
+  var canvas = document.getElementById("infoVis");
+  var ctx = canvas.getContext("2d");
+  var rect = canvas.getBoundingClientRect();
+
+  //Hovering funcionality for all nodes
+  canvas.addEventListener("mousemove", function(event) {
+  //Tweets functionality
+    if (document.getElementById("twitterCheck").checked) {
+      for (var i = 0; i < tweets.length; i++) {
+        var mouseX = event.clientX - rect.left;
+        var mouseY = event.clientY - rect.top;
+        if (mouseX > tweets[i].x - (tweets[i].radius) && mouseX < tweets[i].x + (tweets[i].radius) && mouseY > tweets[i].y - (tweets[i].radius) && mouseY < tweets[i].y + (tweets[i].radius) && tweets[i].hit == false) {
+          drawPoint(tweets[i], '#ff944d', '#006080');
+        } else if (tweets[i].hit == false) {
+          drawPoint(tweets[i], '#00c0ff', '#006080');
+        }
+      }
+    }
+
+  //Instagram functionality
+
+
+  //Google+ functionality
+  });
+
 //TWITTER
   function drawTweets() {
     for (var i = 0; i < tweets.length; i++) {
