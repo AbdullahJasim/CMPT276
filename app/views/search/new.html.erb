@@ -141,7 +141,7 @@ $("button").click(function() {
       var canvas = document.getElementById("infoVis");
       var ctx = canvas.getContext("2d");
 
-  //Creating a google
+//Creating a google
       var google = new Object();
       var time = ("<%= (google.published) %>");
       var text = ("<%= escape_javascript (google.object.content) %>");
@@ -154,7 +154,7 @@ $("button").click(function() {
       google.x = google.textLength;
       google.y = google.textLength;
 
-  //Update the global min / max values
+//Update the global min / max values
       if (google.textLength < shortestGoogle) {
         shortestGoogle = google.textLength;
       } else if (google.textLength > longestGoogle) {
@@ -200,7 +200,7 @@ $("button").click(function() {
       var canvas = document.getElementById("infoVis");
       var ctx = canvas.getContext("2d");
 
-  //Creating a tweet
+//Creating a tweet
       var tweet = new Object();
       var time = ("<%= (tweet.created_at) %>");
       var text = ("<%= escape_javascript (tweet.text) %>");
@@ -213,7 +213,7 @@ $("button").click(function() {
       tweet.x = tweet.textlength;
       tweet.y = tweet.textlength;
 
-  //If we're adding the tweet to the array, update the points of the spectrum for length, date and popularity
+//If we're adding the tweet to the array, update the points of the spectrum for length, date and popularity
       if (checkIfTweetExists(tweet) == false) {
         if (tweet.textlength < shortestTweet) {
           shortestTweet = tweet.textlength;
@@ -269,11 +269,10 @@ $("button").click(function() {
  <h1>Search Results for <%= @query %> on Instagram</h1>
  <% @instagram.each do |inst| %>
    <script type="text/javascript">
-     //<%= image_tag inst.images.standard_resolution.url %>
      var canvas = document.getElementById("infoVis");
      var ctx = canvas.getContext("2d");
 
-   //Creating an instagram
+//Creating an instagram
      var instagram = new Object();
      var time = ("<%= inst.created_time %>");
      instagram.time = getInstagramTimeValue(time);
@@ -285,7 +284,7 @@ $("button").click(function() {
      instagram.x = 0;
      instagram.y = 0;
 
-   //Update the global min / max values
+//Update the global min / max values
      if (instagram.imageSize < smallestInstagram) {
        smallestInstagram = instagram.imageSize;
      } else if (instagram.imageSize > largestInstagram) {
@@ -393,6 +392,7 @@ $("button").click(function() {
 
 //Google+ functionality
   });
+
 
 //TWITTER
   function drawTweets() {
@@ -655,35 +655,34 @@ $("button").click(function() {
   }
 
 //Control functions
-    document.getElementById("twitterCheck").addEventListener('change', redraw);
-    document.getElementById("instagramCheck").addEventListener('change', redraw);
-    document.getElementById("googleCheck").addEventListener('change', redraw);
+  document.getElementById("twitterCheck").addEventListener('change', redraw);
+  document.getElementById("instagramCheck").addEventListener('change', redraw);
+  document.getElementById("googleCheck").addEventListener('change', redraw);
 
 //Redraw function, called each time an update in controls happens
-    function redraw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (document.getElementById("twitterCheck").checked) {
-        if (document.getElementById("dateCheck").checked) {updateTweetsY("date"); }
-        if (document.getElementById("popularityCheck").checked) {updateTweetsX("popularity"); }
-        //if (document.getElementById("sizeCheck").checked) {updateTweetsX("size"); }
-        drawTweets();
-      }
-
-      if (document.getElementById("googleCheck").checked) {
-        if (document.getElementById("dateCheck").checked) {updateGooglesY("date"); }
-        if (document.getElementById("popularityCheck").checked) {updateGooglesX("popularity"); }
-        drawGoogles();
-      }
-
-      if (document.getElementById("instagramCheck").checked) {
-        if (document.getElementById("dateCheck").checked) {updateInstagramsY("date"); }
-        if (document.getElementById("popularityCheck").checked) {updateInstagramsX("popularity"); }
-        drawInstagrams();
-      }
-
-
+  function redraw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (document.getElementById("twitterCheck").checked) {
+      if (document.getElementById("dateCheck").checked) {updateTweetsY("date"); }
+      if (document.getElementById("popularityCheck").checked) {updateTweetsX("popularity"); }
+      //if (document.getElementById("sizeCheck").checked) {updateTweetsX("size"); }
+      drawTweets();
     }
-</script>
+
+    if (document.getElementById("googleCheck").checked) {
+      if (document.getElementById("dateCheck").checked) {updateGooglesY("date"); }
+      if (document.getElementById("popularityCheck").checked) {updateGooglesX("popularity"); }
+      drawGoogles();
+    }
+
+    if (document.getElementById("instagramCheck").checked) {
+      if (document.getElementById("dateCheck").checked) {updateInstagramsY("date"); }
+      if (document.getElementById("popularityCheck").checked) {updateInstagramsX("popularity"); }
+      drawInstagrams();
+    }
+
+
+  }
 
 <% if @freq_search_option  && @current_user.memberType == "Paid" %>
  <h1>Frequent Patterns</h1>
