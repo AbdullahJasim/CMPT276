@@ -8,6 +8,11 @@ class SearchController < ApplicationController
   @@result
   @@user
 
+  def show
+    @request = request.original_fullpath
+    @request.sub! "/search", "/getresult"
+  end
+
   def new
     @hash_tags = []
     @freq_words = []
@@ -55,6 +60,8 @@ class SearchController < ApplicationController
 
     @freq_search_option = params[:freq_words]
     @@result = render_to_string 'search/new', :layout => false
+
+    render :layout => false
   end
 
   def mail

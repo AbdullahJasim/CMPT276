@@ -1,0 +1,12 @@
+<div id="search-result-content"></div>
+<script type="text/javascript">
+
+$.ajax({
+  url: "<%= @request %>",
+  cache: false,
+  success: function(html) {
+    $("#spinner").hide();
+    $("#search-result-content").append(html);
+  }
+});
+</script>
