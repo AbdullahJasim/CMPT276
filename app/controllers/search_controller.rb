@@ -1,6 +1,6 @@
 require 'thread'
 require 'thwait'
-require 'Mail'
+require 'mail'
 
 class SearchController < ApplicationController
 
