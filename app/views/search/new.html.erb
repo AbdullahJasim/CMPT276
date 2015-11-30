@@ -167,7 +167,6 @@ $("button").click(function() {
 
 <% if !@googleplus.items.nil? %>
   <% no_results = false %>
-  <h1>Search Results for <%= @query %> on Google+</h1>
   <% @googleplus.items.each do |google| %>
     <script type="text/javascript">
       var canvas = document.getElementById("infoVis");
@@ -211,7 +210,6 @@ $("button").click(function() {
 <% if tweet_count != 0 %>
   <% no_results = false %>
   <% tweet_count = 0 %>
-  <h1>Search Results for <%= @query %> on Twitter</h1>
   <% @twitter.each do |tweet| %>
     <script type="text/javascript">
       var canvas = document.getElementById("infoVis");
@@ -275,7 +273,6 @@ $("button").click(function() {
 
 <% if !@instagram.nil? %>
  <% no_results = false %>
- <h1>Search Results for <%= @query %> on Instagram</h1>
  <% @instagram.each do |inst| %>
    <script type="text/javascript">
      var canvas = document.getElementById("infoVis");
