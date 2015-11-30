@@ -19,14 +19,17 @@
           <% end %>
           <%= yield %>
       </div>
-
+  </body>
     <footer class="footer">
       <ul>
         <li>© 2015 Visocialize</li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact Us</a></li>
+        <%if logged_in? && current_user.admin? %>
+          <li><a href="/users">Display Users</a></li>
+        <% end %>
       </ul>
     </footer>
   </div>
-  </body>
+
 </html>

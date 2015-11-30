@@ -1,0 +1,29 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Account Type</th>
+        <th>Admin</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.email, user %></td>
+        <td><%= link_to user.memberType, edit_user_path(user)%></td>
+        <td><%= user.admin%></td>
+        <td><% if current_user.admin? && current_user != user %>
+             <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+              <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
