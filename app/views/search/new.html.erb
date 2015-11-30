@@ -383,7 +383,13 @@ $("button").click(function() {
         if (mouseX > tweets[i].x - (tweets[i].radius) && mouseX < tweets[i].x + (tweets[i].radius) && mouseY > tweets[i].y - (tweets[i].radius) && mouseY < tweets[i].y + (tweets[i].radius)) {
           tweets[i].hit = true;
           oneHit = true;
-          document.getElementById("chosenResult").innerHTML = tweets[i].textvalue;
+          link_text = tweets[i].textvalue.split(/\s+/);
+          for (var j = 0; j <  link_text.length; j++){
+            if( link_text[j].indexOf('https://t.co') >= 0) {
+              link_text[j] = '<a href =' +'"' + link_text[j] + '"' + ' target="_blank">'+link_text[j]+'</a>';
+            }
+          }
+          document.getElementById("chosenResult").innerHTML = link_text.join(' ');
           drawPoint(tweets[i], '#5cd65c', '#006080');
         } else { tweets[i].hit = false;}
       }

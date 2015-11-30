@@ -9,6 +9,7 @@ class SearchController < ApplicationController
   @@user
 
   def show
+    @user  = current_user
     @request = request.original_fullpath
     @request.sub! "/search", "/getresult"
   end
