@@ -467,7 +467,9 @@ $("button").click(function() {
         if (mouseX > instagrams[i].x - (instagrams[i].radius) && mouseX < instagrams[i].x + (instagrams[i].radius) && mouseY > instagrams[i].y - (instagrams[i].radius) && mouseY < instagrams[i].y + (instagrams[i].radius) && instagrams[i].hovered) {
           instagrams[i].hit = true;
           oneHit = true;
-          document.getElementById("chosenResult").innerHTML = "<img src='" + instagrams[i].imageURL + "'>'";
+          document.getElementById("chosenResult").innerHTML = "";
+          document.getElementById("image").src = instagrams[i].imageURL;
+          document.getElementById('imageLink').href = instagrams[i].picLink;
           clickedPoint = instagrams[i];
         } else { instagrams[i].hit = false;}
       }
