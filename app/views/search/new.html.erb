@@ -42,7 +42,7 @@
 <style>
 .mdl-card {
 	background-color: indigo;
-  width: 400px;
+  width: 480px;
   top: 100px;
   right: 50px;
   position: absolute;
@@ -317,7 +317,7 @@ $("button").click(function() {
      instagram.time = getInstagramTimeValue(time);
      instagram.popularity = parseInt("<%= inst.likes[:count] %>"); //count is a reserved word, so we have to use a nested notation instead
      instagram.imageSize = ("<%= inst.images.standard_resolution.width %>") * ("<%= inst.images.standard_resolution.height %>");
-     instagram.imageURL = ("<%= inst.images.thumbnail.url %>");
+     instagram.imageURL = ("<%= inst.images.standard_resolution.url %>");
      instagram.radius = instagram.imageSize / 100;
      instagram.hit = false;
      instagram.hovered = false;
@@ -457,6 +457,8 @@ $("button").click(function() {
           oneHit = true;
           document.getElementById("chosenResult").innerHTML = googles[i].textValue;
           document.getElementById("image").src = "";
+          document.getElementById("image").width = "";
+          document.getElementById("image").height = "";
           document.getElementById('imageLink').href = "";
           clickedPoint = googles[i];
         } else { googles[i].hit = false;}
@@ -471,6 +473,8 @@ $("button").click(function() {
           oneHit = true;
           document.getElementById("chosenResult").innerHTML = "";
           document.getElementById("image").src = instagrams[i].imageURL;
+          document.getElementById("image").width = "450";
+          document.getElementById("image").height = "450";
           document.getElementById('imageLink').href = instagrams[i].picLink;
           clickedPoint = instagrams[i];
         } else { instagrams[i].hit = false;}
@@ -491,6 +495,8 @@ $("button").click(function() {
           }
           document.getElementById("chosenResult").innerHTML = link_text.join(' ');
           document.getElementById("image").src = "";
+          document.getElementById("image").width = "";
+          document.getElementById("image").height = "";
           document.getElementById('imageLink').href = "";
           clickedPoint = tweets[i];
         } else { tweets[i].hit = false;}
