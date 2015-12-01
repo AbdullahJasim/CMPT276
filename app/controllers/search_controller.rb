@@ -9,6 +9,14 @@ class SearchController < ApplicationController
   @@user
 
   def show
+    # Keywords are not passed in
+    # Used to forbid users calling GET '/search' directly and
+    # handles the error when user doesn't enter anything in queries
+    if params[:q].nil? || params[:q].blank?
+      redirect_to root_url
+      return
+    end
+
     @user  = current_user
     @request = request.original_fullpath
     @request.sub! "/search", "/getresult"
@@ -21,15 +29,8 @@ class SearchController < ApplicationController
     @@user = current_user   # mail() method will retrieve user email address here
     @user  = current_user   # @user is used in other controllers and views as usual
 
-    # Keywords are not passed in
-    # Used to forbid users calling GET '/search' directly and
-    # handles the error when user doesn't enter anything in queries
-    if params[:q].nil? || params[:q].blank?
-      redirect_to root_url
-      return
-    else
-      @query = params[:q]
-    end
+    @query = params[:q]
+
 
     threads = []
     threads << Thread.new do
