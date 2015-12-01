@@ -456,6 +456,8 @@ $("button").click(function() {
           googles[i].hit = true;
           oneHit = true;
           document.getElementById("chosenResult").innerHTML = googles[i].textValue;
+          document.getElementById("image").src = "";
+          document.getElementById('imageLink').href = "";
           clickedPoint = googles[i];
         } else { googles[i].hit = false;}
       }
@@ -488,6 +490,8 @@ $("button").click(function() {
             }
           }
           document.getElementById("chosenResult").innerHTML = link_text.join(' ');
+          document.getElementById("image").src = "";
+          document.getElementById('imageLink').href = "";
           clickedPoint = tweets[i];
         } else { tweets[i].hit = false;}
       }
