@@ -15,7 +15,10 @@
     <a onclick="close_button()"><h5 class="close-button">x</h5></a>
   </div>
 	<div class="mdl-card__title mdl-card--expand">
-		<p id="chosenResult"></p>
+    <a href="tobechanged" id = "imageLink" target="_blank">
+      <img id="image">
+    </a>
+    <p id = "chosenResult"></p>
 	</div>
 </div>
 <style>
@@ -284,12 +287,13 @@ $("button").click(function() {
      instagram.time = getInstagramTimeValue(time);
      instagram.popularity = parseInt("<%= inst.likes[:count] %>"); //count is a reserved word, so we have to use a nested notation instead
      instagram.imageSize = ("<%= inst.images.standard_resolution.width %>") * ("<%= inst.images.standard_resolution.height %>");
-     instagram.imageURL = ("<%= inst.images.standard_resolution.url %>");
+     instagram.imageURL = ("<%= inst.images.thumbnail.url %>");
      instagram.radius = instagram.imageSize / 100;
      instagram.hit = false;
      instagram.hovered = false;
      instagram.x = 0;
      instagram.y = 0;
+     instagram.picLink = ("<%= inst.link %>");
 
 //Update the global min / max values
      if (instagram.imageSize < smallestInstagram) { smallestInstagram = instagram.imageSize;
@@ -390,6 +394,8 @@ $("button").click(function() {
             }
           }
           document.getElementById("chosenResult").innerHTML = link_text.join(' ');
+          document.getElementById("image").src = '';
+          document.getElementById("imageLink").href = '';
           drawPoint(tweets[i], '#5cd65c', '#006080');
         } else { tweets[i].hit = false;}
       }
@@ -404,7 +410,9 @@ $("button").click(function() {
           instagrams[i].hit = true;
           oneHit = true;
           //Figure out a way to add the image to the result div here
-          //document.getElementById("chosenResult").innerHTML = instagrams[i].textvalue;
+          document.getElementById("chosenResult").innerHTML = '';
+          document.getElementById("image").src = instagrams[i].imageURL;
+          document.getElementById('imageLink').href = instagrams[i].picLink;
           drawPoint(instagrams[i], '#5cd65c', '#006080');
         } else { instagrams[i].hit = false;}
       }
@@ -419,6 +427,8 @@ $("button").click(function() {
           googles[i].hit = true;
           oneHit = true;
           document.getElementById("chosenResult").innerHTML = googles[i].textValue;
+          document.getElementById("image").src = '';
+          document.getElementById("imageLink").href = '';
           drawPoint(googles[i], '#5cd65c', '#006080');
         } else { googles[i].hit = false;}
       }
