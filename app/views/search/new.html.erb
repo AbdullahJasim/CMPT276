@@ -1,26 +1,30 @@
 <div class="control">
-  <input type="checkbox" id="twitterCheck">Twitter<br>
-  <input type="checkbox" id="instagramCheck">Instagram<br>
-  <input type="checkbox" id="googleCheck">Google+<br>
+  <h3>Search Settings: </h3>
+  <table>
+    <tr>
+      <td></td>
+      <td>Date: </td>
+      <td>Popularity: </td>
+      <td>Size: </td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" id="twitterCheck">Twitter</td>
+      <td><input type="radio" id="dateAsc" name="date" value="ascending">Ascending</td>
+      <td><input type="radio" id="popAsc" name="popularity" value="ascending">Ascending</td>
+      <td><input type="radio" id="sizeAsc" name="Size" value="ascending">Ascending</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" id="instagramCheck">Instagram</td>
+      <td><input type="radio" id="dateDes" name="date" value="descending">Descending</td>
+      <td><input type="radio" id="popDes" name="popularity" value="descending">Descending</td>
+      <td><input type="radio" id="sizeDes" name="Size" value="descending">Descending</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" id="googleCheck">Google+</td>
+    </tr>
+  </table>
   <br><br>
-  <h3>Date:</h3>
-  <form action="">
-  <input type="radio" id="dateAsc" name="date" value="ascending">Ascending<br>
-  <input type="radio" id="dateDes" name="date" value="descending">Descending
-  </form>
-  <br><br>
-  <h3>Popularity:</h3>
-  <form action="">
-  <input type="radio" id="popAsc" name="popularity" value="ascending">Ascending<br>
-  <input type="radio" id="popDes" name="popularity" value="descending">Descending
-  </form>
-  <br><br>
-  <h3>Size:</h3>
-  <form action="">
-  <input type="radio" id="sizeAsc" name="Size" value="ascending">Ascending<br>
-  <input type="radio" id="sizeDes" name="Size" value="descending">Descending
-  </form>
-  <br><br>
+
 </div>
 <canvas id="infoVis" width="800" height="800"></canvas>
 <br><br>
@@ -55,6 +59,13 @@
 }
 .control {
   position: relative;
+}
+table {
+  font-size: 1.5em;
+}
+tr, td {
+  padding-top: 5px;
+  padding-right: 40px;
 }
 </style>
 <script type="text/javascript">
